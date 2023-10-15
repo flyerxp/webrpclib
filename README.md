@@ -7,12 +7,10 @@
 
   使用 webquick 项目快速创建web的依赖类库
 
-  https://github.com/flyerxp/webquick
+  https://github.com/flyerxp/hertz_web
 
   使用 rpcquick 项目快速创建rpc的依赖类库
 
-  https://github.com/flyerxp/rpcquick
-
-  
+  https://github.com/flyerxp/kitex_rpc
 
 ```
