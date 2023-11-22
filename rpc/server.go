@@ -9,22 +9,18 @@ import (
 	"go.uber.org/zap"
 	"net"
 	"strconv"
+	"strings"
 )
 
 var serverIp string
 
 func getServerIp() string {
-	addr, err := net.InterfaceAddrs()
+	conn, err := net.Dial("udp", "8.8.8.8:53")
 	if err != nil {
 		return ""
 	}
-	for _, address := range addr {
-		// 检查IP地址，其他类型的地址(如link-local或者loopback)忽略
-		if ipnet, ok := address.(*net.IPNet); ok && !ipnet.IP.IsLoopback() && ipnet.IP.To4() != nil {
-			return ipnet.IP.String()
-		}
-	}
-	return ""
+	addr := conn.LocalAddr().(*net.UDPAddr)
+	return strings.Split(addr.String(), ":")[0]
 }
 
 // NewServer creates a server.Server with the given handler and options.
@@ -37,7 +33,10 @@ func GetServerOptions(sName string, yaml string, opts ...server.Option) []server
 		panic(err)
 	}
 	serverIp = getServerIp() + ":" + strconv.Itoa(addr.Port)
-	if conf.Kitex.Server.Address != "" {
+	if conf.Kitex.Server.Address != "" && conf.Kitex.Server.Address[0:1] != ":" {
+		options = append(options, server.WithServiceAddr(addr))
+	} else if conf.Kitex.Server.Address[0:1] == ":" {
+		addr, err = net.ResolveTCPAddr("tcp", serverIp)
 		options = append(options, server.WithServiceAddr(addr))
 	}
 	if conf.Kitex.Server.ServiceFind.Type != "" {
