@@ -5,7 +5,7 @@ go 1.20
 require (
 	github.com/apache/thrift v0.13.0
 	github.com/bytedance/gopkg v0.0.0-20230728082804-614d0af6619b
-	github.com/cloudwego/hertz v0.6.5
+	github.com/cloudwego/hertz v0.7.2
 	github.com/cloudwego/kitex v0.7.3
 	github.com/flyerxp/lib v1.10.60
 	github.com/hertz-contrib/http2 v0.1.7
@@ -59,7 +59,7 @@ require (
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/savsgio/gotils v0.0.0-20220530130905-52f3993e8d6d // indirect
 	github.com/stretchr/testify v1.8.2 // indirect
-	github.com/tidwall/gjson v1.13.0 // indirect
+	github.com/tidwall/gjson v1.14.4 // indirect
 	github.com/tidwall/match v1.1.1 // indirect
 	github.com/tidwall/pretty v1.2.0 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
