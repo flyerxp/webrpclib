@@ -40,5 +40,6 @@ func (ch *clientTTHeaderHandler) WriteMeta(ctx context.Context, msg remote.Messa
 
 // ReadMeta of clientTTHeaderHandler reads headers of TTHeader protocol from transport
 func (ch *clientTTHeaderHandler) ReadMeta(ctx context.Context, msg remote.Message) (context.Context, error) {
+
 	return ctx, nil
 }

@@ -14,7 +14,6 @@ import (
 	"github.com/cloudwego/kitex/pkg/retry"
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
 	"github.com/cloudwego/kitex/pkg/warmup"
-	"github.com/cloudwego/kitex/transport"
 	config2 "github.com/flyerxp/lib/config"
 	"github.com/flyerxp/lib/logger"
 	"github.com/kitex-contrib/registry-nacos/resolver"
@@ -83,7 +82,6 @@ func GetClientOptions(yaml string, opts ...client.Option) []client.Option {
 		client.WithClientBasicInfo(&rpcinfo.EndpointBasicInfo{
 			ServiceName: config2.GetConf().App.Name,
 		}),
-		client.WithTransportProtocol(transport.TTHeader),
 		client.WithMetaHandler(ClientTTHeaderHandler),
 	}
 	if conf.Kitex.Client.ConnType == "short" {
