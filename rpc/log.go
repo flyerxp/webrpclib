@@ -50,12 +50,12 @@ func getLog() *logrus.Logger {
 	})
 	return L
 }
-func initRpcLog() {
-	klog.SetLevel(logLevel())
+func initRpcLog(conf *KitexConf) {
+	klog.SetLevel(logLevel(conf))
 	klog.SetOutput(os.Stdout)
 }
-func logLevel() klog.Level {
-	level := GetConf().Kitex.Server.LogLevel
+func logLevel(conf *KitexConf) klog.Level {
+	level := conf.Kitex.Server.LogLevel
 	switch level {
 	case "trace":
 		return klog.LevelTrace

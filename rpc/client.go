@@ -12,7 +12,10 @@ import (
 	cp "github.com/cloudwego/kitex/pkg/remote/connpool"
 	"github.com/cloudwego/kitex/pkg/remote/trans/nphttp2/status"
 	"github.com/cloudwego/kitex/pkg/retry"
+	"github.com/cloudwego/kitex/pkg/rpcinfo"
 	"github.com/cloudwego/kitex/pkg/warmup"
+	"github.com/cloudwego/kitex/transport"
+	config2 "github.com/flyerxp/lib/config"
 	"github.com/flyerxp/lib/logger"
 	"github.com/kitex-contrib/registry-nacos/resolver"
 	"github.com/nacos-group/nacos-sdk-go/clients"
@@ -58,20 +61,38 @@ func (c *ConnReporter) ReuseSucceed(poolType cp.ConnectionPoolType, serviceName 
 
 // NewClientOption
 func GetClientOptions(yaml string, opts ...client.Option) []client.Option {
-	var options []client.Option
-	initConf(yaml)
-	conf := GetConf()
-	ObjConnPool := getPool()
+	conf := GetConf(yaml)
+	ObjConnPool := getPool(&conf)
 	re := new(ConnReporter)
 	cp.SetReporter(re)
-	options = append(options, client.WithConnReporterEnabled())
+	options := []client.Option{
+		client.WithConnReporterEnabled(),
+		client.WithCloseCallbacks(func() error {
+			logger.WarnWithoutCtx(zap.String("client", "close"))
+			return nil
+		}),
+		client.WithErrorHandler(func(ctx context.Context, err error) error {
+			switch err.(type) {
+			case *remote.TransError, thrift.TApplicationException, protobuf.PBError:
+				logger.ErrWithoutCtx(zap.String("RpicClientIo", err.Error()), zap.Error(err))
+				return kerrors.ErrRemoteOrNetwork.WithCauseAndExtraMsg(err, "remote")
+			}
+			logger.ErrWithoutCtx(zap.String("RpcRemoteOrNetwork", err.Error()), zap.Error(err))
+			return kerrors.ErrRemoteOrNetwork.WithCause(err)
+		}),
+		client.WithClientBasicInfo(&rpcinfo.EndpointBasicInfo{
+			ServiceName: config2.GetConf().App.Name,
+		}),
+		client.WithTransportProtocol(transport.TTHeader),
+		client.WithMetaHandler(ClientTTHeaderHandler),
+	}
 	if conf.Kitex.Client.ConnType == "short" {
 		options = append(options, client.WithShortConnection())
 	} else {
 		options = append(options, client.WithLongConnection(ObjConnPool))
 	}
 	if conf.Kitex.Client.ServiceFind.Type != "" {
-		options = append(options, getClientNacosOption())
+		options = append(options, getClientNacosOption(&conf))
 	}
 	fp := retry.NewFailurePolicy()
 
@@ -108,34 +129,20 @@ func GetClientOptions(yaml string, opts ...client.Option) []client.Option {
 			},
 		}))
 	}
-	options = append(options, client.WithErrorHandler(func(ctx context.Context, err error) error {
-		switch err.(type) {
-		case *remote.TransError, thrift.TApplicationException, protobuf.PBError:
-			logger.ErrWithoutCtx(zap.String("RpicClientIo", err.Error()), zap.Error(err))
-			return kerrors.ErrRemoteOrNetwork.WithCauseAndExtraMsg(err, "remote")
-		}
-		logger.ErrWithoutCtx(zap.String("RpcRemoteOrNetwork", err.Error()), zap.Error(err))
-		return kerrors.ErrRemoteOrNetwork.WithCause(err)
-	}))
-	options = append(options, client.WithCloseCallbacks(func() error {
-		logger.WarnWithoutCtx(zap.String("client", "close"))
-		return nil
-	}))
-	options = append(options, client.WithMetaHandler(ClientTTHeaderHandler))
+
 	options = append(options, opts...)
 	return options
 }
 
-func getClientNacosOption() client.Option {
-	cli := getNacosClient()
+func getClientNacosOption(conf *KitexConf) client.Option {
+	cli := getNacosClient(conf)
 	return client.WithResolver(resolver.NewNacosResolver(cli,
 		resolver.WithCluster("rpc"),
 		resolver.WithGroup("rpc"),
 	))
 }
-func getNacosClient() naming_client.INamingClient {
+func getNacosClient(conf *KitexConf) naming_client.INamingClient {
 	if nacosClient.IsInitEnd == false {
-		conf := GetConf()
 		c := conf.Kitex.Nacos
 		oUrl, _ := url.Parse(c.Url)
 		iPort, _ := strconv.Atoi(oUrl.Port())
@@ -168,9 +175,9 @@ func getNacosClient() naming_client.INamingClient {
 }
 
 // connpool init
-func getPool() cpp.IdleConfig {
+func getPool(conf *KitexConf) cpp.IdleConfig {
 	ObjConnPool := cpp.IdleConfig{MaxIdlePerAddress: 10, MaxIdleGlobal: 1000, MaxIdleTimeout: time.Minute, MinIdlePerAddress: 2}
-	conf := GetConf()
+
 	pollConf := conf.Kitex.Client.Pool
 	if pollConf.MaxIdlePerAddress > 0 {
 		ObjConnPool.MaxIdlePerAddress = pollConf.MaxIdlePerAddress

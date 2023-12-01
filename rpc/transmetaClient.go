@@ -5,8 +5,6 @@ import (
 	"github.com/bytedance/gopkg/cloud/metainfo"
 	"github.com/cloudwego/kitex/pkg/remote"
 	"github.com/cloudwego/kitex/pkg/remote/transmeta"
-	"github.com/cloudwego/kitex/pkg/rpcinfo/remoteinfo"
-	"github.com/flyerxp/lib/config"
 	"github.com/flyerxp/lib/logger"
 	"strconv"
 )
@@ -29,16 +27,7 @@ func (ch *clientTTHeaderHandler) WriteMeta(ctx context.Context, msg remote.Messa
 		transmeta.FromService: ri.From().ServiceName(),
 		transmeta.FromMethod:  ri.From().Method(),
 	}
-	if config.GetConf().App.Type != "rpc" {
-		hd[transmeta.LogID] = logger.GetLogId(ctx)
-	} else {
-		remoteObj := remoteinfo.AsRemoteInfo(ri.From())
-		if remoteObj == nil {
-			return ctx, nil
-		}
-		strInfo := transInfo.TransIntInfo()
-		logId = strInfo[transmeta.LogID]
-	}
+	hd[transmeta.LogID] = logger.GetLogId(ctx)
 	transInfo.PutTransIntInfo(hd)
 	msg.TransInfo().PutTransIntInfo(hd)
 	if metainfo.HasMetaInfo(ctx) {

@@ -53,19 +53,11 @@ type KitexConf struct {
 	IsInitEnd bool
 }
 
-var KitexConfV = new(KitexConf)
-
-func initConf(yaml string) {
-	if KitexConfV.IsInitEnd == false {
-		err := ymls.DecodeByBytes([]byte(yaml), KitexConfV)
-		if err != nil {
-			logger.ErrWithoutCtx(zap.Error(err), zap.String("rpcConfig", yaml))
-		}
-		KitexConfV.IsInitEnd = true
+func GetConf(yaml string) KitexConf {
+	KitexConfV := new(KitexConf)
+	err := ymls.DecodeByBytes([]byte(yaml), KitexConfV)
+	if err != nil {
+		logger.ErrWithoutCtx(zap.Error(err), zap.String("rpcConfig", yaml))
 	}
-}
-
-// 获取配置
-func GetConf() *KitexConf {
-	return KitexConfV
+	return *KitexConfV
 }
