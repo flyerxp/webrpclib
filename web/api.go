@@ -102,7 +102,7 @@ func registerMiddleware(heConf *HertzConf, h *server.Hertz, rInfo *registry.Info
 		logger.SetAddr(ctx, c.ClientIP(), ip)
 		logger.SetUserAgent(ctx, string(c.UserAgent()))
 		if v, ok := c.Get("loggerStart"); ok {
-			logger.SetExecTime(ctx, int(time.Since(v.(time.Time)).Milliseconds()))
+			logger.SetExecTime(ctx, int(time.Since(v.(time.Time)).Microseconds()))
 		}
 		logger.WriteLine(ctx)
 	})
