@@ -34,7 +34,12 @@ type ClientStt struct {
 	ConnType       string `yaml:"conn_type" json:"conn_type,omitempty"`             //#使用长连接还是短连接 short|long
 	Warmup         bool   `yaml:"warmup" json:"warmup"`
 	WarmupConnNums int    `yaml:"warmup_conn_nums" json:"warmup_conn_nums"`
-	Pool           struct {
+	KeepLive       struct {
+		Time                string `json:"time" yaml:"time"`
+		TimeOut             string `json:"timeout" yaml:"timeout"`
+		PermitWithoutStream bool   `json:"permit_without_stream" yaml:"permit_without_stream"`
+	} `json:"keep_live" yaml:"keep_live"`
+	Pool struct {
 		MaxIdlePerAddress int    `yaml:"max_idle_per_address" json:"max_idle_per_address,omitempty"` //表示每个后端实例可允许的最大闲置连接数
 		MaxIdleGlobal     int    `yaml:"max_idle_global" json:"max_idle_global,omitempty"`           //表示全局最大闲置连接数
 		MaxIdleTimeout    string `yaml:"max_idle_timeout" json:"max_idle_timeout,omitempty"`         //表示连接的闲置时长，超过这个时长的连接会被关闭（最小值 3s，默认值 30s ）

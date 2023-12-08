@@ -2,6 +2,8 @@ package rpc
 
 import (
 	"context"
+	"errors"
+	"fmt"
 	"github.com/apache/thrift/lib/go/thrift"
 	"github.com/cloudwego/kitex/client"
 	cpp "github.com/cloudwego/kitex/pkg/connpool"
@@ -10,6 +12,7 @@ import (
 	"github.com/cloudwego/kitex/pkg/remote"
 	"github.com/cloudwego/kitex/pkg/remote/codec/protobuf"
 	cp "github.com/cloudwego/kitex/pkg/remote/connpool"
+	"github.com/cloudwego/kitex/pkg/remote/trans/nphttp2/grpc"
 	"github.com/cloudwego/kitex/pkg/remote/trans/nphttp2/status"
 	"github.com/cloudwego/kitex/pkg/retry"
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
@@ -104,6 +107,21 @@ func GetClientOptions(yaml string, opts ...client.Option) []client.Option {
 		fp.WithMaxDurationMS(uint32(conf.Kitex.Client.MaxDurationMS))
 	}
 
+	if conf.Kitex.Client.KeepLive.PermitWithoutStream && conf.Kitex.Client.KeepLive.Time != "" {
+		t, errT := time.ParseDuration(conf.Kitex.Client.KeepLive.Time)
+		if errT != nil {
+			panic(errors.New(fmt.Sprintf("conf.Kitex.Client.KeepLive.Time 解析错误:%s", conf.Kitex.Client.KeepLive.Time)))
+		}
+		to, errTo := time.ParseDuration(conf.Kitex.Client.KeepLive.TimeOut)
+		if errTo != nil {
+			panic(errors.New(fmt.Sprintf("conf.Kitex.Client.KeepLive.TimeOut 解析错误:%s", conf.Kitex.Client.KeepLive.TimeOut)))
+		}
+		options = append(options, client.WithGRPCKeepaliveParams(grpc.ClientKeepalive{
+			Time:                t, // less than  grpc.KeepaliveMinPingTime(5s)
+			Timeout:             to,
+			PermitWithoutStream: true,
+		}))
+	}
 	options = append(options, client.WithFailureRetry(fp))
 	if conf.Kitex.Client.RpcTimeout != "" {
 		t, errT := time.ParseDuration(conf.Kitex.Client.RpcTimeout)
