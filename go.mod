@@ -7,7 +7,7 @@ require (
 	github.com/bytedance/gopkg v0.0.0-20230728082804-614d0af6619b
 	github.com/cloudwego/hertz v0.7.2
 	github.com/cloudwego/kitex v0.8.0
-	github.com/flyerxp/lib v1.10.76
+	github.com/flyerxp/lib v1.10.78
 	github.com/hertz-contrib/http2 v0.1.7
 	github.com/hertz-contrib/logger/accesslog v0.0.0-20230619034227-00fc458d8f95
 	github.com/hertz-contrib/pprof v0.1.0
@@ -66,7 +66,7 @@ require (
 	go.uber.org/multierr v1.11.0 // indirect
 	golang.org/x/arch v0.2.0 // indirect
 	golang.org/x/net v0.17.0 // indirect
-	golang.org/x/sync v0.2.0 // indirect
+	golang.org/x/sync v0.3.0 // indirect
 	golang.org/x/sys v0.13.0 // indirect
 	golang.org/x/text v0.13.0 // indirect
 	google.golang.org/genproto v0.0.0-20210513213006-bf773b8c8384 // indirect
