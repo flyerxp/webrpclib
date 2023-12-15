@@ -93,7 +93,11 @@ func registerMiddleware(heConf *HertzConf, h *server.Hertz, rInfo *registry.Info
 	ip := rInfo.Addr.String()
 	h.Use(func(ctx context.Context, c *app.RequestContext) {
 		logger.SetUrl(ctx, fmt.Sprintf("%s?%s", string(c.Path()), c.QueryArgs().String()))
-		logger.SetArgs(ctx, string(c.PostArgs().String()))
+		if string(c.ContentType()) == "application/json" {
+			logger.SetArgs(ctx, string(c.GetRequest().Body()))
+		} else {
+			logger.SetArgs(ctx, c.PostArgs().String())
+		}
 		logger.SetRefer(ctx, string(c.GetHeader("Referer")))
 		c.Set("loggerStart", time.Now())
 		c.Next(ctx)
