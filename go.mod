@@ -5,7 +5,7 @@ go 1.20
 require (
 	github.com/apache/thrift v0.13.0
 	github.com/bytedance/gopkg v0.0.0-20230728082804-614d0af6619b
-	github.com/cloudwego/hertz v0.7.2
+	github.com/cloudwego/hertz v0.8.0
 	github.com/cloudwego/kitex v0.8.0
 	github.com/flyerxp/lib v1.11.11
 	github.com/hertz-contrib/http2 v0.1.7
