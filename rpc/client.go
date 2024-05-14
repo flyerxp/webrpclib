@@ -215,8 +215,9 @@ func getPool(conf *KitexConf) cpp.IdleConfig {
 
 	return ObjConnPool
 }
-func RecordError(ctx context.Context, err error) {
-	logger.AddError(ctx, zap.Error(err))
+func RecordError(ctx context.Context, err error, field ...zap.Field) {
+	field = append(field, zap.Error(err))
+	logger.AddError(ctx, field...)
 	if e, ok := err.(*remote.TransError); ok {
 		logger.AddError(ctx, zap.String("trans", e.Error()))
 		klog.CtxErrorf(ctx, "NewsView trans call failed,err =%+v", err)
