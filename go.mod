@@ -7,7 +7,7 @@ require (
 	github.com/bytedance/gopkg v0.0.0-20240507064146-197ded923ae3
 	github.com/cloudwego/hertz v0.9.0
 	github.com/cloudwego/kitex v0.9.3-rc2
-	github.com/flyerxp/lib v1.11.15
+	github.com/flyerxp/lib v1.11.16
 	github.com/hertz-contrib/http2 v0.1.8
 	github.com/hertz-contrib/logger/accesslog v0.0.0-20240128134225-6b18af47a115
 	github.com/hertz-contrib/pprof v0.1.2
@@ -43,6 +43,7 @@ require (
 	github.com/felixge/fgprof v0.9.4 // indirect
 	github.com/fsnotify/fsnotify v1.7.0 // indirect
 	github.com/go-errors/errors v1.5.1 // indirect
+	github.com/golang/protobuf v1.5.4 // indirect
 	github.com/google/pprof v0.0.0-20240509144519-723abb6459b7 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/iancoleman/strcase v0.3.0 // indirect
