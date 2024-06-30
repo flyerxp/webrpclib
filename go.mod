@@ -6,7 +6,7 @@ require (
 	github.com/apache/thrift v0.13.0
 	github.com/bytedance/gopkg v0.0.0-20240531030433-5df24c0168e2
 	github.com/cloudwego/hertz v0.9.1
-	github.com/cloudwego/kitex v0.10.0
+	github.com/cloudwego/kitex v0.10.1
 	github.com/flyerxp/lib v1.11.22
 	github.com/hertz-contrib/http2 v0.1.8
 	github.com/hertz-contrib/logger/accesslog v0.0.0-20240128134225-6b18af47a115
@@ -28,7 +28,6 @@ require (
 	github.com/bytedance/go-tagexpr/v2 v2.9.11 // indirect
 	github.com/bytedance/sonic v1.11.8 // indirect
 	github.com/bytedance/sonic/loader v0.1.1 // indirect
-	github.com/choleraehyq/pid v0.0.18 // indirect
 	github.com/cloudwego/base64x v0.1.4 // indirect
 	github.com/cloudwego/configmanager v0.2.2 // indirect
 	github.com/cloudwego/dynamicgo v0.2.8 // indirect
@@ -36,7 +35,7 @@ require (
 	github.com/cloudwego/frugal v0.1.16 // indirect
 	github.com/cloudwego/iasm v0.2.0 // indirect
 	github.com/cloudwego/localsession v0.0.2 // indirect
-	github.com/cloudwego/netpoll v0.6.1 // indirect
+	github.com/cloudwego/netpoll v0.6.2 // indirect
 	github.com/cloudwego/runtimex v0.1.0 // indirect
 	github.com/cloudwego/thriftgo v0.3.13 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
