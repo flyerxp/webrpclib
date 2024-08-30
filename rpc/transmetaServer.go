@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"github.com/cloudwego/kitex/pkg/remote"
 	"github.com/cloudwego/kitex/pkg/remote/transmeta"
-	"github.com/flyerxp/lib/logger"
+	"github.com/flyerxp/lib/v2/logger"
 )
 
 var ServerTTHeaderHandler remote.MetaHandler = &serverTTHeaderHandler{}

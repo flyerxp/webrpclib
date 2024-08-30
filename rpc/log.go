@@ -2,8 +2,8 @@ package rpc
 
 import (
 	"github.com/cloudwego/kitex/pkg/klog"
-	config2 "github.com/flyerxp/lib/config"
-	"github.com/flyerxp/lib/logger"
+	config2 "github.com/flyerxp/lib/v2/config"
+	"github.com/flyerxp/lib/v2/logger"
 	"github.com/sirupsen/logrus"
 	"gopkg.in/natefinch/lumberjack.v2"
 	"os"

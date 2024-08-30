@@ -1,9 +1,9 @@
 package web
 
 import (
-	config2 "github.com/flyerxp/lib/config"
-	"github.com/flyerxp/lib/logger"
-	ymls "github.com/flyerxp/lib/utils/yaml"
+	config2 "github.com/flyerxp/lib/v2/config"
+	"github.com/flyerxp/lib/v2/logger"
+	ymls "github.com/flyerxp/lib/v2/utils/yaml"
 	"go.uber.org/zap"
 )
 

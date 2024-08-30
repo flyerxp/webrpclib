@@ -4,7 +4,7 @@ import (
 	"context"
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
 	"github.com/cloudwego/kitex/server"
-	"github.com/flyerxp/lib/logger"
+	"github.com/flyerxp/lib/v2/logger"
 	"github.com/kitex-contrib/registry-nacos/registry"
 	"go.uber.org/zap"
 	"net"
