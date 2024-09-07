@@ -4,7 +4,7 @@ go 1.22.1
 
 require (
 	github.com/apache/thrift v0.13.0
-	github.com/bytedance/gopkg v0.1.0
+	github.com/bytedance/gopkg v0.1.1
 	github.com/cloudwego/hertz v0.9.3
 	github.com/cloudwego/kitex v0.10.3
 	github.com/flyerxp/lib/v2 v2.0.3
@@ -61,12 +61,12 @@ require (
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/stretchr/testify v1.9.0 // indirect
-	github.com/tidwall/gjson v1.17.1 // indirect
+	github.com/tidwall/gjson v1.17.3 // indirect
 	github.com/tidwall/match v1.1.1 // indirect
 	github.com/tidwall/pretty v1.2.1 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
-	golang.org/x/arch v0.8.0 // indirect
+	golang.org/x/arch v0.10.0 // indirect
 	golang.org/x/net v0.29.0 // indirect
 	golang.org/x/sync v0.8.0 // indirect
 	golang.org/x/sys v0.25.0 // indirect
