@@ -21,7 +21,7 @@ require (
 )
 
 require (
-	github.com/aliyun/alibaba-cloud-sdk-go v1.63.16 // indirect
+	github.com/aliyun/alibaba-cloud-sdk-go v1.63.17 // indirect
 	github.com/andeya/ameda v1.5.3 // indirect
 	github.com/andeya/goutil v1.0.1 // indirect
 	github.com/buger/jsonparser v1.1.1 // indirect
