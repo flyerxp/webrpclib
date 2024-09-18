@@ -6,8 +6,8 @@ require (
 	github.com/apache/thrift v0.13.0
 	github.com/bytedance/gopkg v0.1.1
 	github.com/cloudwego/hertz v0.9.3
-	github.com/cloudwego/kitex v0.10.3
-	github.com/flyerxp/lib/v2 v2.0.3
+	github.com/cloudwego/kitex v0.11.3
+	github.com/flyerxp/lib/v2 v2.0.5
 	github.com/hertz-contrib/http2 v0.1.8
 	github.com/hertz-contrib/logger/accesslog v0.0.0-20240623133421-6fb592ed8d10
 	github.com/hertz-contrib/pprof v0.1.2
@@ -21,7 +21,7 @@ require (
 )
 
 require (
-	github.com/aliyun/alibaba-cloud-sdk-go v1.63.13 // indirect
+	github.com/aliyun/alibaba-cloud-sdk-go v1.63.16 // indirect
 	github.com/andeya/ameda v1.5.3 // indirect
 	github.com/andeya/goutil v1.0.1 // indirect
 	github.com/buger/jsonparser v1.1.1 // indirect
@@ -30,14 +30,14 @@ require (
 	github.com/bytedance/sonic/loader v0.2.0 // indirect
 	github.com/cloudwego/base64x v0.1.4 // indirect
 	github.com/cloudwego/configmanager v0.2.2 // indirect
-	github.com/cloudwego/dynamicgo v0.3.0 // indirect
+	github.com/cloudwego/dynamicgo v0.4.0 // indirect
 	github.com/cloudwego/fastpb v0.0.5 // indirect
 	github.com/cloudwego/frugal v0.2.0 // indirect
-	github.com/cloudwego/gopkg v0.1.1 // indirect
+	github.com/cloudwego/gopkg v0.1.2 // indirect
 	github.com/cloudwego/iasm v0.2.0 // indirect
 	github.com/cloudwego/localsession v0.1.0 // indirect
 	github.com/cloudwego/netpoll v0.6.4 // indirect
-	github.com/cloudwego/runtimex v0.1.0 // indirect
+	github.com/cloudwego/runtimex v0.1.1 // indirect
 	github.com/cloudwego/thriftgo v0.3.17 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/fatih/structtag v1.2.0 // indirect
@@ -45,7 +45,7 @@ require (
 	github.com/fsnotify/fsnotify v1.7.0 // indirect
 	github.com/go-errors/errors v1.5.1 // indirect
 	github.com/golang/protobuf v1.5.4 // indirect
-	github.com/google/pprof v0.0.0-20240903155634-a8630aee4ab9 // indirect
+	github.com/google/pprof v0.0.0-20240910150728-a0b0bb1d4134 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/iancoleman/strcase v0.3.0 // indirect
 	github.com/jhump/protoreflect v1.14.1 // indirect
