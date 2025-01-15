@@ -5,8 +5,8 @@ go 1.23.0
 require (
 	github.com/apache/thrift v0.13.0
 	github.com/bytedance/gopkg v0.1.1
-	github.com/cloudwego/hertz v0.9.4
-	github.com/cloudwego/kitex v0.12.0
+	github.com/cloudwego/hertz v0.9.5
+	github.com/cloudwego/kitex v0.12.1
 	github.com/flyerxp/lib/v2 v2.0.23
 	github.com/hertz-contrib/http2 v0.1.8
 	github.com/hertz-contrib/logger/accesslog v0.0.0-20241107070745-e4ce8c54dd97
@@ -27,7 +27,7 @@ require (
 	github.com/bytedance/sonic/loader v0.2.1 // indirect
 	github.com/cloudwego/base64x v0.1.4 // indirect
 	github.com/cloudwego/configmanager v0.2.2 // indirect
-	github.com/cloudwego/dynamicgo v0.4.6 // indirect
+	github.com/cloudwego/dynamicgo v0.4.7-0.20241220085612-55704ea4ca8f // indirect
 	github.com/cloudwego/fastpb v0.0.5 // indirect
 	github.com/cloudwego/frugal v0.2.3 // indirect
 	github.com/cloudwego/gopkg v0.1.3 // indirect
