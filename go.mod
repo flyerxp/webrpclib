@@ -23,11 +23,11 @@ require (
 require (
 	github.com/aliyun/alibaba-cloud-sdk-go v1.63.89 // indirect
 	github.com/buger/jsonparser v1.1.1 // indirect
-	github.com/bytedance/sonic v1.12.9 // indirect
+	github.com/bytedance/sonic v1.12.10 // indirect
 	github.com/bytedance/sonic/loader v0.2.3 // indirect
 	github.com/cloudwego/base64x v0.1.5 // indirect
 	github.com/cloudwego/configmanager v0.2.2 // indirect
-	github.com/cloudwego/dynamicgo v0.5.2 // indirect
+	github.com/cloudwego/dynamicgo v0.5.3 // indirect
 	github.com/cloudwego/fastpb v0.0.5 // indirect
 	github.com/cloudwego/frugal v0.2.4 // indirect
 	github.com/cloudwego/gopkg v0.1.4 // indirect
