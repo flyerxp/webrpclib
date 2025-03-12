@@ -7,7 +7,7 @@ require (
 	github.com/bytedance/gopkg v0.1.1
 	github.com/cloudwego/hertz v0.9.6
 	github.com/cloudwego/kitex v0.12.3
-	github.com/flyerxp/lib/v2 v2.0.32
+	github.com/flyerxp/lib/v2 v2.0.33
 	github.com/hertz-contrib/http2 v0.1.8
 	github.com/hertz-contrib/logger/accesslog v0.0.0-20241107070745-e4ce8c54dd97
 	github.com/hertz-contrib/pprof v0.1.2
@@ -21,13 +21,13 @@ require (
 )
 
 require (
-	github.com/aliyun/alibaba-cloud-sdk-go v1.63.92 // indirect
+	github.com/aliyun/alibaba-cloud-sdk-go v1.63.93 // indirect
 	github.com/buger/jsonparser v1.1.1 // indirect
-	github.com/bytedance/sonic v1.12.10 // indirect
-	github.com/bytedance/sonic/loader v0.2.3 // indirect
+	github.com/bytedance/sonic v1.13.1 // indirect
+	github.com/bytedance/sonic/loader v0.2.4 // indirect
 	github.com/cloudwego/base64x v0.1.5 // indirect
 	github.com/cloudwego/configmanager v0.2.2 // indirect
-	github.com/cloudwego/dynamicgo v0.5.3 // indirect
+	github.com/cloudwego/dynamicgo v0.6.0 // indirect
 	github.com/cloudwego/fastpb v0.0.5 // indirect
 	github.com/cloudwego/frugal v0.2.4 // indirect
 	github.com/cloudwego/gopkg v0.1.4 // indirect
@@ -68,8 +68,8 @@ require (
 	golang.org/x/sync v0.12.0 // indirect
 	golang.org/x/sys v0.31.0 // indirect
 	golang.org/x/text v0.23.0 // indirect
-	google.golang.org/genproto v0.0.0-20250303144028-a0af3efb3deb // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20250303144028-a0af3efb3deb // indirect
+	google.golang.org/genproto v0.0.0-20250311190419-81fb87f6b8bf // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20250311190419-81fb87f6b8bf // indirect
 	google.golang.org/protobuf v1.36.5 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
