@@ -3,7 +3,7 @@ module github.com/flyerxp/webrpclib/v2
 go 1.23.0
 
 require (
-	github.com/apache/thrift v0.13.0
+	github.com/apache/thrift v0.16.0
 	github.com/bytedance/gopkg v0.1.1
 	github.com/cloudwego/hertz v0.9.6
 	github.com/cloudwego/kitex v0.12.3
@@ -13,7 +13,7 @@ require (
 	github.com/hertz-contrib/pprof v0.1.2
 	github.com/hertz-contrib/registry/nacos v0.0.0-20250120124521-8751bc5be5c3
 	github.com/hertz-contrib/requestid v1.1.0
-	github.com/kitex-contrib/registry-nacos v0.1.2
+	github.com/kitex-contrib/registry-nacos v0.1.3
 	github.com/nacos-group/nacos-sdk-go v1.1.5
 	github.com/sirupsen/logrus v1.9.3
 	go.uber.org/zap v1.27.0
@@ -21,13 +21,13 @@ require (
 )
 
 require (
-	github.com/aliyun/alibaba-cloud-sdk-go v1.63.93 // indirect
+	github.com/aliyun/alibaba-cloud-sdk-go v1.63.94 // indirect
 	github.com/buger/jsonparser v1.1.1 // indirect
 	github.com/bytedance/sonic v1.13.1 // indirect
 	github.com/bytedance/sonic/loader v0.2.4 // indirect
 	github.com/cloudwego/base64x v0.1.5 // indirect
 	github.com/cloudwego/configmanager v0.2.2 // indirect
-	github.com/cloudwego/dynamicgo v0.6.0 // indirect
+	github.com/cloudwego/dynamicgo v0.6.2 // indirect
 	github.com/cloudwego/fastpb v0.0.5 // indirect
 	github.com/cloudwego/frugal v0.2.4 // indirect
 	github.com/cloudwego/gopkg v0.1.4 // indirect
@@ -45,7 +45,7 @@ require (
 	github.com/google/pprof v0.0.0-20250302191652-9094ed2288e7 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/iancoleman/strcase v0.3.0 // indirect
-	github.com/jhump/protoreflect v1.14.1 // indirect
+	github.com/jhump/protoreflect v1.11.0 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/klauspost/cpuid/v2 v2.2.10 // indirect
@@ -68,8 +68,8 @@ require (
 	golang.org/x/sync v0.12.0 // indirect
 	golang.org/x/sys v0.31.0 // indirect
 	golang.org/x/text v0.23.0 // indirect
-	google.golang.org/genproto v0.0.0-20250311190419-81fb87f6b8bf // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20250311190419-81fb87f6b8bf // indirect
+	google.golang.org/genproto v0.0.0-20250313205543-e70fdf4c4cb4 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20250313205543-e70fdf4c4cb4 // indirect
 	google.golang.org/protobuf v1.36.5 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
@@ -77,5 +77,6 @@ require (
 
 replace (
 	github.com/apache/thrift => github.com/apache/thrift v0.13.0
+
 	github.com/jhump/protoreflect => github.com/jhump/protoreflect v1.14.1
 )
