@@ -4,10 +4,10 @@ go 1.23.0
 
 require (
 	github.com/apache/thrift v0.16.0
-	github.com/bytedance/gopkg v0.1.1
+	github.com/bytedance/gopkg v0.1.2
 	github.com/cloudwego/hertz v0.9.6
-	github.com/cloudwego/kitex v0.12.3
-	github.com/flyerxp/lib/v2 v2.0.39
+	github.com/cloudwego/kitex v0.13.0
+	github.com/flyerxp/lib/v2 v2.0.40
 	github.com/hertz-contrib/http2 v0.1.8
 	github.com/hertz-contrib/logger/accesslog v0.0.0-20241107070745-e4ce8c54dd97
 	github.com/hertz-contrib/pprof v0.1.2
@@ -29,11 +29,11 @@ require (
 	github.com/cloudwego/configmanager v0.2.3 // indirect
 	github.com/cloudwego/dynamicgo v0.6.2 // indirect
 	github.com/cloudwego/fastpb v0.0.5 // indirect
-	github.com/cloudwego/frugal v0.2.4 // indirect
+	github.com/cloudwego/frugal v0.2.5 // indirect
 	github.com/cloudwego/gopkg v0.1.4 // indirect
 	github.com/cloudwego/iasm v0.2.0 // indirect
 	github.com/cloudwego/localsession v0.1.2 // indirect
-	github.com/cloudwego/netpoll v0.6.5 // indirect
+	github.com/cloudwego/netpoll v0.7.0 // indirect
 	github.com/cloudwego/runtimex v0.1.1 // indirect
 	github.com/cloudwego/thriftgo v0.4.1 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
