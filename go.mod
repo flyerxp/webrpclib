@@ -2,14 +2,12 @@ module github.com/flyerxp/webrpclib/v2
 
 go 1.24
 
-toolchain go1.24.2
-
 require (
 	github.com/apache/thrift v0.16.0
 	github.com/bytedance/gopkg v0.1.2
 	github.com/cloudwego/hertz v0.9.7
 	github.com/cloudwego/kitex v0.13.1
-	github.com/flyerxp/lib/v2 v2.0.44
+	github.com/flyerxp/lib/v2 v2.0.45
 	github.com/hertz-contrib/http2 v0.1.8
 	github.com/hertz-contrib/logger/accesslog v0.0.0-20241107070745-e4ce8c54dd97
 	github.com/hertz-contrib/pprof v0.1.2
@@ -70,8 +68,8 @@ require (
 	golang.org/x/sync v0.13.0 // indirect
 	golang.org/x/sys v0.32.0 // indirect
 	golang.org/x/text v0.24.0 // indirect
-	google.golang.org/genproto v0.0.0-20250414145226-207652e42e2e // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20250414145226-207652e42e2e // indirect
+	google.golang.org/genproto v0.0.0-20250421163800-61c742ae3ef0 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20250421163800-61c742ae3ef0 // indirect
 	google.golang.org/protobuf v1.36.6 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
