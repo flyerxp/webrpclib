@@ -6,8 +6,8 @@ require (
 	github.com/apache/thrift v0.16.0
 	github.com/bytedance/gopkg v0.1.2
 	github.com/cloudwego/hertz v0.10.0
-	github.com/cloudwego/kitex v0.14.0
-	github.com/flyerxp/lib/v2 v2.0.49
+	github.com/cloudwego/kitex v0.14.1
+	github.com/flyerxp/lib/v2 v2.0.50
 	github.com/hertz-contrib/http2 v0.1.8
 	github.com/hertz-contrib/logger/accesslog v0.0.0-20241107070745-e4ce8c54dd97
 	github.com/hertz-contrib/pprof v0.1.2
