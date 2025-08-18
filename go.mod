@@ -5,7 +5,7 @@ go 1.24.2
 require (
 	github.com/apache/thrift v0.16.0
 	github.com/bytedance/gopkg v0.1.3
-	github.com/cloudwego/hertz v0.10.1
+	github.com/cloudwego/hertz v0.10.2
 	github.com/cloudwego/kitex v0.14.1
 	github.com/flyerxp/lib/v2 v2.0.54
 	github.com/hertz-contrib/http2 v0.1.8
