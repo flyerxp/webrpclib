@@ -7,7 +7,7 @@ require (
 	github.com/bytedance/gopkg v0.1.3
 	github.com/cloudwego/hertz v0.10.3
 	github.com/cloudwego/kitex v0.15.2
-	github.com/flyerxp/lib/v2 v2.0.62
+	github.com/flyerxp/lib/v2 v2.0.63
 	github.com/hertz-contrib/http2 v0.1.8
 	github.com/hertz-contrib/logger/accesslog v0.0.0-20241107070745-e4ce8c54dd97
 	github.com/hertz-contrib/pprof v0.1.2
