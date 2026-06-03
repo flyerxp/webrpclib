@@ -24,7 +24,13 @@ import (
 	"go.uber.org/zap"
 	"net/url"
 	"strconv"
+	"sync"
 	"time"
+)
+
+var (
+	nacosRegistryCache = make(map[string]registry.Registry)
+	nacosRegistryMu    sync.Mutex
 )
 
 func GetHttpServer(ctx context.Context, rInfo *registry.Info) *server.Hertz {
@@ -53,7 +59,7 @@ func GetHttpServer(ctx context.Context, rInfo *registry.Info) *server.Hertz {
 		server.WithH2C(heConf.Hertz.H2c),
 	}
 	strAddress := heConf.Hertz.Address
-	strAddress += ":" + string(heConf.Hertz.Port)
+	strAddress += ":" + heConf.Hertz.Port
 	confOption = append(confOption, server.WithHostPorts(strAddress))
 	//服务发现
 	if heConf.Hertz.ServiceFind.ServiceConfName != "" && heConf.Hertz.ServiceFind.Type != "" {
@@ -78,7 +84,9 @@ func registerMiddleware(heConf *HertzConf, h *server.Hertz, rInfo *registry.Info
 	if heConf.Hertz.EnableAccessLog {
 		h.Use(
 			accesslog.New(accesslog.WithTimeInterval(time.Second),
-				accesslog.WithAccessLogFunc(logger.WriteAccess),
+				accesslog.WithAccessLogFunc(func(ctx context.Context, format string, v ...interface{}) {
+					logger.WriteAccess(ctx, format)
+				}),
 				accesslog.WithFormat("{\"time\":\"${time}\",\"status\":\"${status}\",\"latency\":\"${latency}\",\"method\":\"${method}\",\"path:\"\"${path}\",\"query\":\"${queryParams}\"}"),
 			))
 	}
@@ -129,6 +137,13 @@ func getNacosOption(sName string, rInfo *registry.Info) config.Option {
 
 // 获取服务发现配置
 func getNacosFind(c config2.MidNacos) registry.Registry {
+	nacosRegistryMu.Lock()
+	if r, ok := nacosRegistryCache[c.Url]; ok {
+		nacosRegistryMu.Unlock()
+		return r
+	}
+	nacosRegistryMu.Unlock()
+
 	oUrl, _ := url.Parse(c.Url)
 	iPort, _ := strconv.Atoi(oUrl.Port())
 	sc := []constant.ServerConfig{
@@ -152,10 +167,13 @@ func getNacosFind(c config2.MidNacos) registry.Registry {
 			ServerConfigs: sc,
 		},
 	)
-	r := nacos.NewNacosRegistry(cli, nacos.WithRegistryCluster("web"), nacos.WithRegistryGroup("web"))
 	if err != nil {
 		panic(err)
-		return nil
 	}
+	r := nacos.NewNacosRegistry(cli, nacos.WithRegistryCluster("web"), nacos.WithRegistryGroup("web"))
+
+	nacosRegistryMu.Lock()
+	nacosRegistryCache[c.Url] = r
+	nacosRegistryMu.Unlock()
 	return r
 }

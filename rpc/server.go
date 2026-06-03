@@ -10,15 +10,18 @@ import (
 	"net"
 	"strconv"
 	"strings"
+	"sync"
 )
 
 var serverIp string
+var serverIpOnce sync.Once
 
 func getServerIp() string {
 	conn, err := net.Dial("udp", "8.8.8.8:53")
 	if err != nil {
 		return ""
 	}
+	defer conn.Close()
 	addr := conn.LocalAddr().(*net.UDPAddr)
 	return strings.Split(addr.String(), ":")[0]
 }
@@ -31,7 +34,9 @@ func GetServerOptions(sName string, yaml string, opts ...server.Option) []server
 	if err != nil {
 		panic(err)
 	}
-	serverIp = getServerIp() + ":" + strconv.Itoa(addr.Port)
+	serverIpOnce.Do(func() {
+		serverIp = getServerIp() + ":" + strconv.Itoa(addr.Port)
+	})
 
 	if conf.Kitex.Server.Address != "" && conf.Kitex.Server.Address[0:1] != ":" {
 		options = append(options, server.WithServiceAddr(addr))

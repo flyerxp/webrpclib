@@ -12,47 +12,55 @@ import (
 	"sync"
 )
 
-var L *logrus.Logger
-var once sync.Once
+var (
+	L       *logrus.Logger
+	logOnce sync.Once
+)
 
-func init() {
-	go getLog()
-}
 func getLog() *logrus.Logger {
-	once.Do(func() {
-		paths := logger.GetPath(config2.GetConf().App.Logger.OutputPaths, "rpc")
-		logPath := ""
-		for _, v := range paths {
-			if strings.Contains(v, "/") {
-				logPath = filepath.Dir(v) + "/rpc_conn.log"
-			}
-		}
-		pLog := &logrus.Logger{
-			Formatter:    new(logrus.JSONFormatter),
-			Hooks:        make(logrus.LevelHooks),
-			Level:        logrus.InfoLevel,
-			ExitFunc:     os.Exit,
-			ReportCaller: false,
-		}
-		if logPath == "" {
-			pLog.Out = os.Stdout
-		} else {
-			pLog.Out = &lumberjack.Logger{
-				Filename:   logPath,
-				MaxSize:    1024000,
-				MaxBackups: 2,
-				MaxAge:     48,
-				Compress:   true,
-				LocalTime:  true,
-			}
-		}
-		L = pLog
+	logOnce.Do(func() {
+		L = newLogrusLogger()
 	})
 	return L
+}
+
+func newLogrusLogger() *logrus.Logger {
+	paths := logger.GetPath(config2.GetConf().App.Logger.OutputPaths, "rpc")
+	logPath := ""
+	for _, v := range paths {
+		if strings.Contains(v, "/") {
+			logPath = filepath.Dir(v) + "/rpc_conn.log"
+		}
+	}
+	pLog := &logrus.Logger{
+		Formatter:    new(logrus.JSONFormatter),
+		Hooks:        make(logrus.LevelHooks),
+		Level:        logrus.InfoLevel,
+		ExitFunc:     os.Exit,
+		ReportCaller: false,
+	}
+	if logPath == "" {
+		pLog.Out = os.Stdout
+	} else {
+		pLog.Out = &lumberjack.Logger{
+			Filename:   logPath,
+			MaxSize:    1024000,
+			MaxBackups: 2,
+			MaxAge:     48,
+			Compress:   true,
+			LocalTime:  true,
+		}
+	}
+	return pLog
 }
 func initRpcLog(conf *KitexConf) {
 	klog.SetLevel(logLevel(conf))
 	klog.SetOutput(os.Stdout)
+}
+
+// GetLogger 安全地获取日志实例，延迟初始化
+func GetLogger() *logrus.Logger {
+	return getLog()
 }
 func logLevel(conf *KitexConf) klog.Level {
 	level := conf.Kitex.Server.LogLevel

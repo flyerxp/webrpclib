@@ -28,21 +28,31 @@ import (
 	"net"
 	"net/url"
 	"strconv"
+	"sync"
 	"time"
 )
 
 type nacosClientStt struct {
 	RpcClient naming_client.INamingClient
-	IsInitEnd bool
 }
 
 var nacosClient *nacosClientStt
+var nacosClientOnce sync.Once
 
 func init() {
 	nacosClient = new(nacosClientStt)
 }
 
 type ConnReporter struct {
+}
+
+var connReporterOnce sync.Once
+
+func initConnReporter() {
+	connReporterOnce.Do(func() {
+		re := new(ConnReporter)
+		cp.SetReporter(re)
+	})
 }
 
 func (c *ConnReporter) ConnSucceed(poolType cp.ConnectionPoolType, serviceName string, addr net.Addr) {
@@ -65,8 +75,7 @@ func (c *ConnReporter) ReuseSucceed(poolType cp.ConnectionPoolType, serviceName 
 func GetClientOptions(yaml string, opts ...client.Option) []client.Option {
 	conf := GetConf(yaml)
 	ObjConnPool := getPool(&conf)
-	re := new(ConnReporter)
-	cp.SetReporter(re)
+	initConnReporter()
 	options := []client.Option{
 		client.WithConnReporterEnabled(),
 		client.WithCloseCallbacks(func() error {
@@ -135,7 +144,7 @@ func GetClientOptions(yaml string, opts ...client.Option) []client.Option {
 		if errT != nil {
 			panic(errT)
 		}
-		options = append(options, client.WithRPCTimeout(t))
+		options = append(options, client.WithConnectTimeout(t))
 	}
 
 	if conf.Kitex.Client.Warmup {
@@ -158,7 +167,7 @@ func getClientNacosOption(conf *KitexConf) client.Option {
 	))
 }
 func getNacosClient(conf *KitexConf) naming_client.INamingClient {
-	if nacosClient.IsInitEnd == false {
+	nacosClientOnce.Do(func() {
 		c := conf.Kitex.Nacos
 		oUrl, _ := url.Parse(c.Url)
 		iPort, _ := strconv.Atoi(oUrl.Port())
@@ -185,8 +194,7 @@ func getNacosClient(conf *KitexConf) naming_client.INamingClient {
 			panic(err)
 		}
 		nacosClient.RpcClient = cli
-		nacosClient.IsInitEnd = true
-	}
+	})
 	return nacosClient.RpcClient
 }
 

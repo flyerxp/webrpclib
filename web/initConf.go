@@ -5,6 +5,7 @@ import (
 	"github.com/flyerxp/lib/v2/logger"
 	ymls "github.com/flyerxp/lib/v2/utils/yaml"
 	"go.uber.org/zap"
+	"sync"
 )
 
 type HertzConf struct {
@@ -32,14 +33,14 @@ type HertzConf struct {
 		RootUpload     string            `yaml:"root_upload"`
 		Other          map[string]string `yaml:"other"`
 	} `yaml:"resource"`
-	IsInitEnd bool
 }
 
 var hertzConfV = new(HertzConf)
+var hertzConfOnce sync.Once
 
 // 获取配置
 func GetConf() *HertzConf {
-	if hertzConfV.IsInitEnd == false {
+	hertzConfOnce.Do(func() {
 		err := ymls.DecodeByFile(config2.GetConfFile("hertz.yml"), hertzConfV)
 		if err != nil {
 			logger.ErrWithoutCtx(zap.Error(err), zap.String("file", config2.GetConfFile("hertz.yml")))
@@ -53,7 +54,6 @@ func GetConf() *HertzConf {
 		if hertzConfV.Hertz.WriteTimeout == "" {
 			hertzConfV.Hertz.WriteTimeout = "30s"
 		}
-		hertzConfV.IsInitEnd = true
-	}
+	})
 	return hertzConfV
 }

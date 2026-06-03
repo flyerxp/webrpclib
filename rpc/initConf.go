@@ -5,6 +5,7 @@ import (
 	"github.com/flyerxp/lib/v2/logger"
 	ymls "github.com/flyerxp/lib/v2/utils/yaml"
 	"go.uber.org/zap"
+	"sync"
 )
 
 /*
@@ -55,14 +56,25 @@ type KitexConf struct {
 		Client ClientStt        `yaml:"client" json:"client"`
 		Nacos  config2.MidNacos `yaml:"nacos" json:"nacos"`
 	} `yaml:"kitex" json:"kitex"`
-	IsInitEnd bool
 }
 
+var (
+	kitexConfCache = make(map[string]*KitexConf)
+	kitexConfMu    sync.Mutex
+)
+
 func GetConf(yaml string) KitexConf {
+	kitexConfMu.Lock()
+	if v, ok := kitexConfCache[yaml]; ok {
+		kitexConfMu.Unlock()
+		return *v
+	}
 	KitexConfV := new(KitexConf)
 	err := ymls.DecodeByBytes([]byte(yaml), KitexConfV)
 	if err != nil {
 		logger.ErrWithoutCtx(zap.Error(err), zap.String("rpcConfig", yaml))
 	}
+	kitexConfCache[yaml] = KitexConfV
+	kitexConfMu.Unlock()
 	return *KitexConfV
 }
