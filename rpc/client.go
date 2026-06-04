@@ -56,13 +56,13 @@ func initConnReporter() {
 }
 
 func (c *ConnReporter) ConnSucceed(poolType cp.ConnectionPoolType, serviceName string, addr net.Addr) {
-	L.WithField("service", serviceName).
+	getLog().WithField("service", serviceName).
 		WithField("addr", addr.String()).
 		WithField("poolType", poolType).
 		Info("Succeed")
 }
 func (c *ConnReporter) ConnFailed(poolType cp.ConnectionPoolType, serviceName string, addr net.Addr) {
-	L.WithField("service", serviceName).
+	getLog().WithField("service", serviceName).
 		WithField("addr", addr.String()).
 		WithField("poolType", poolType).
 		Warn("Failed")
