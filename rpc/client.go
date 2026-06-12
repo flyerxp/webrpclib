@@ -71,7 +71,7 @@ func (c *ConnReporter) ReuseSucceed(poolType cp.ConnectionPoolType, serviceName 
 
 }
 
-// NewClientOption
+// GetClientOptions NewClientOption
 func GetClientOptions(yaml string, opts ...client.Option) []client.Option {
 	conf := GetConf(yaml)
 	ObjConnPool := getPool(&conf)
