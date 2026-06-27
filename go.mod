@@ -3,11 +3,10 @@ module github.com/flyerxp/webrpclib/v2
 go 1.26.2
 
 require (
-	github.com/apache/thrift v0.16.0
 	github.com/bytedance/gopkg v0.1.4
 	github.com/cloudwego/hertz v0.10.5
 	github.com/cloudwego/kitex v0.16.2
-	github.com/flyerxp/lib/v2 v2.0.75
+	github.com/flyerxp/lib/v2 v2.0.76
 	github.com/hertz-contrib/http2 v0.1.8
 	github.com/hertz-contrib/logger/accesslog v0.0.0-20241107070745-e4ce8c54dd97
 	github.com/hertz-contrib/pprof v0.1.2
@@ -15,7 +14,6 @@ require (
 	github.com/hertz-contrib/requestid v1.1.0
 	github.com/kitex-contrib/registry-nacos v0.1.3
 	github.com/nacos-group/nacos-sdk-go v1.1.6
-	github.com/sirupsen/logrus v1.9.4
 	go.uber.org/zap v1.28.0
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1
 )
@@ -71,9 +69,4 @@ require (
 	google.golang.org/protobuf v1.36.12-0.20260120151049-f2248ac996af // indirect
 	gopkg.in/ini.v1 v1.67.3 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
-)
-
-replace (
-	github.com/apache/thrift => github.com/apache/thrift v0.13.0
-//github.com/jhump/protoreflect => github.com/jhump/protoreflect v1.14.1
 )

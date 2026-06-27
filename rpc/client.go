@@ -4,7 +4,6 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"github.com/apache/thrift/lib/go/thrift"
 	"github.com/cloudwego/kitex/client"
 	cpp "github.com/cloudwego/kitex/pkg/connpool"
 	"github.com/cloudwego/kitex/pkg/kerrors"
@@ -54,18 +53,20 @@ func initConnReporter() {
 		cp.SetReporter(re)
 	})
 }
-
 func (c *ConnReporter) ConnSucceed(poolType cp.ConnectionPoolType, serviceName string, addr net.Addr) {
-	getLog().WithField("service", serviceName).
-		WithField("addr", addr.String()).
-		WithField("poolType", poolType).
-		Info("Succeed")
+	getLog().With(
+		"service", serviceName,
+		"addr", addr.String(),
+		"poolType", poolType,
+	).Info("Succeed")
 }
+
 func (c *ConnReporter) ConnFailed(poolType cp.ConnectionPoolType, serviceName string, addr net.Addr) {
-	getLog().WithField("service", serviceName).
-		WithField("addr", addr.String()).
-		WithField("poolType", poolType).
-		Warn("Failed")
+	getLog().With(
+		"service", serviceName,
+		"addr", addr.String(),
+		"poolType", poolType,
+	).Warn("Failed")
 }
 func (c *ConnReporter) ReuseSucceed(poolType cp.ConnectionPoolType, serviceName string, addr net.Addr) {
 
@@ -84,7 +85,7 @@ func GetClientOptions(yaml string, opts ...client.Option) []client.Option {
 		}),
 		client.WithErrorHandler(func(ctx context.Context, err error) error {
 			switch err.(type) {
-			case *remote.TransError, thrift.TApplicationException, protobuf.PBError:
+			case *remote.TransError, protobuf.PBError:
 				logger.ErrWithoutCtx(zap.String("RpicClientIo", err.Error()), zap.Error(err))
 				return kerrors.ErrRemoteOrNetwork.WithCauseAndExtraMsg(err, "remote")
 			}
