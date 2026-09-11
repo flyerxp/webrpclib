@@ -16,11 +16,10 @@ import (
 	"github.com/hertz-contrib/http2/factory"
 	"github.com/hertz-contrib/logger/accesslog"
 	"github.com/hertz-contrib/pprof"
-	"github.com/hertz-contrib/registry/nacos"
 	"github.com/hertz-contrib/requestid"
-	"github.com/nacos-group/nacos-sdk-go/clients"
-	"github.com/nacos-group/nacos-sdk-go/common/constant"
-	"github.com/nacos-group/nacos-sdk-go/vo"
+	"github.com/nacos-group/nacos-sdk-go/v2/clients"
+	"github.com/nacos-group/nacos-sdk-go/v2/common/constant"
+	"github.com/nacos-group/nacos-sdk-go/v2/vo"
 	"go.uber.org/zap"
 	"net/url"
 	"strconv"
@@ -170,7 +169,7 @@ func getNacosFind(c config2.MidNacos) registry.Registry {
 	if err != nil {
 		panic(err)
 	}
-	r := nacos.NewNacosRegistry(cli, nacos.WithRegistryCluster("web"), nacos.WithRegistryGroup("web"))
+	r := newNacosRegistry(cli, "web", "web")
 
 	nacosRegistryMu.Lock()
 	nacosRegistryCache[c.Url] = r

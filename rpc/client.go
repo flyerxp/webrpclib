@@ -18,11 +18,10 @@ import (
 	"github.com/cloudwego/kitex/pkg/warmup"
 	config2 "github.com/flyerxp/lib/v2/config"
 	"github.com/flyerxp/lib/v2/logger"
-	"github.com/kitex-contrib/registry-nacos/resolver"
-	"github.com/nacos-group/nacos-sdk-go/clients"
-	"github.com/nacos-group/nacos-sdk-go/clients/naming_client"
-	"github.com/nacos-group/nacos-sdk-go/common/constant"
-	"github.com/nacos-group/nacos-sdk-go/vo"
+	"github.com/nacos-group/nacos-sdk-go/v2/clients"
+	"github.com/nacos-group/nacos-sdk-go/v2/clients/naming_client"
+	"github.com/nacos-group/nacos-sdk-go/v2/common/constant"
+	"github.com/nacos-group/nacos-sdk-go/v2/vo"
 	"go.uber.org/zap"
 	"net"
 	"net/url"
@@ -162,10 +161,7 @@ func GetClientOptions(yaml string, opts ...client.Option) []client.Option {
 
 func getClientNacosOption(conf *KitexConf) client.Option {
 	cli := getNacosClient(conf)
-	return client.WithResolver(resolver.NewNacosResolver(cli,
-		resolver.WithCluster("rpc"),
-		resolver.WithGroup("rpc"),
-	))
+	return client.WithResolver(newNacosResolver(cli, "rpc", "rpc"))
 }
 func getNacosClient(conf *KitexConf) naming_client.INamingClient {
 	nacosClientOnce.Do(func() {

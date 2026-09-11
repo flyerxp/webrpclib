@@ -5,7 +5,6 @@ import (
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
 	"github.com/cloudwego/kitex/server"
 	"github.com/flyerxp/lib/v2/logger"
-	"github.com/kitex-contrib/registry-nacos/registry"
 	"go.uber.org/zap"
 	"net"
 	"strconv"
@@ -70,10 +69,7 @@ func getServerNacosOption(conf *KitexConf) []server.Option {
 	option = append(option,
 		server.WithServerBasicInfo(&rpcinfo.EndpointBasicInfo{ServiceName: conf.Kitex.Server.ServiceName, Tags: map[string]string{}}),
 		//server.WithTransHandlerFactory(&remote.ServerTransHandlerFactory{}),
-		server.WithRegistry(registry.NewNacosRegistry(cli,
-			registry.WithCluster("rpc"),
-			registry.WithGroup("rpc"),
-		)),
+		server.WithRegistry(newNacosRegistry(cli, "rpc", "rpc")),
 	)
 	return option
 }

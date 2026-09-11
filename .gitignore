@@ -1,3 +1,5 @@
 /.idea
 /go.sum
 /deltag.ps1
+.qoder
+/openspec/
