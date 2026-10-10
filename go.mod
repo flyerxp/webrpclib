@@ -5,8 +5,8 @@ go 1.27.1
 require (
 	github.com/bytedance/gopkg v0.1.4
 	github.com/cloudwego/hertz v0.10.6
-	github.com/cloudwego/kitex v0.16.3
-	github.com/flyerxp/lib/v2 v2.0.84
+	github.com/cloudwego/kitex v0.16.4
+	github.com/flyerxp/lib/v2 v2.0.85
 	github.com/hertz-contrib/http2 v0.1.8
 	github.com/hertz-contrib/logger/accesslog v0.0.0-20241107070745-e4ce8c54dd97
 	github.com/hertz-contrib/pprof v0.1.2
@@ -59,7 +59,7 @@ require (
 	github.com/fsnotify/fsnotify v1.10.1 // indirect
 	github.com/golang/mock v1.6.0 // indirect
 	github.com/golang/protobuf v1.5.4 // indirect
-	github.com/google/pprof v0.0.0-20261006160405-d99a6174ef52 // indirect
+	github.com/google/pprof v0.0.0-20261008003335-7bae8d8c4c9e // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/gorilla/websocket v1.5.4-0.20250319132907-e064f32e3674 // indirect
 	github.com/iancoleman/strcase v0.3.0 // indirect
@@ -76,7 +76,7 @@ require (
 	github.com/orcaman/concurrent-map/v2 v2.0.1 // indirect
 	github.com/petermattis/goid v0.0.0-20260918085751-abfca077860b // indirect
 	github.com/pkg/errors v0.9.1 // indirect
-	github.com/prometheus/client_golang v1.24.1 // indirect
+	github.com/prometheus/client_golang v1.25.0 // indirect
 	github.com/prometheus/client_model v0.6.3 // indirect
 	github.com/prometheus/common v0.72.0 // indirect
 	github.com/prometheus/procfs v0.22.0 // indirect
@@ -88,12 +88,12 @@ require (
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	go.yaml.in/yaml/v3 v3.0.5 // indirect
-	golang.org/x/arch v0.31.0 // indirect
-	golang.org/x/crypto v0.57.0 // indirect
-	golang.org/x/net v0.59.0 // indirect
-	golang.org/x/sync v0.23.0 // indirect
-	golang.org/x/sys v0.48.0 // indirect
-	golang.org/x/text v0.42.0 // indirect
+	golang.org/x/arch v0.32.0 // indirect
+	golang.org/x/crypto v0.58.0 // indirect
+	golang.org/x/net v0.61.0 // indirect
+	golang.org/x/sync v0.24.0 // indirect
+	golang.org/x/sys v0.49.0 // indirect
+	golang.org/x/text v0.43.0 // indirect
 	golang.org/x/time v0.16.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20261005182115-fad411399dd8 // indirect
 	google.golang.org/grpc v1.84.0 // indirect
